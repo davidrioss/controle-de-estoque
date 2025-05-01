@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhes do Produto{% endblock %}
+
+{% block content %}
+    <p></p>
+    
+    <h2>Detalhes do Produto</h2>
+    
+    <ul class="list-group">
+        <p class="list-group-item list-group-item-secondary"><strong>Nome:</strong> {{ produto.nome }}</p>
+        <p class="list-group-item"><strong>Quantidade:</strong> {{ produto.quantidade }}</p>
+        <p class="list-group-item"><strong>Preço:</strong> {{ produto.preco }}</p>
+        <p class="list-group-item"><strong>Categoria:</strong> {{ produto.categoria }}</p>
+        <p class="list-group-item"><strong>Descrição:</strong> {{ produto.descricao }}</p>
+        <p class="list-group-item"><strong>Fornecedor:</strong> {{ produto.fornecedor }}</p>
+    </ul>
+    
+    <a class="btn btn-success" href="{% url 'atualizar_produto' produto.pk %}">Editar Produto</a>
+    <a class="btn btn-danger" href="{% url 'listar_produtos' %}">Voltar</a>
+{% endblock %}

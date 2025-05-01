@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Fornecedores{% endblock %}
+
+{% block content %}
+    
+    <p></p>
+    <a class="btn btn-success" href="{% url 'adicionar_fornecedor' %}">Adicionar Fornecedor</a>
+    <p></p>
+
+    <h2 class="mb-4">Lista de Fornecedores</h2>
+
+    <ul class="list-group">
+        {% for fornecedor in page_obj %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ fornecedor.nome }}</strong>
+                </div>
+                <div>
+                    <a class="btn btn-secondary" href="{% url 'detalhes_fornecedor' fornecedor.pk %}">Detalhes</a>
+                    <a class="btn btn-secondary" href="{% url 'atualizar_fornecedor' fornecedor.pk %}">Editar</a>
+                    <a class="btn btn-danger" href="{% url 'excluir_fornecedor' fornecedor.pk %}" onclick="return confirm('Tem certeza que deseja excluir este fornecedor?');">Excluir</a>
+                </div>
+            </li>
+        {% endfor %}
+    
+    </ul>
+    
+    <!-- Links de paginação -->
+    <div class="pagination align-items-center mt-4 d-flex justify-content-center">
+        <span class="step-links text-center ">
+            {% if page_obj.has_previous %}
+                <a class="btn btn-secondary btn-sm" href="?page=1">Primeira</a>
+                <a class="btn btn-secondary btn-sm" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+
+            <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-secondary btn-sm" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+                <a class="btn btn-secondary btn-sm" href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock %}

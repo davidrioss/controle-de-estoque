@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhes da Categoria{% endblock %}
+
+{% block content %}
+    <p></p>
+    
+    <h2>Detalhes da Categoria</h2>
+    
+    <ul class="list-group">
+        <p class="list-group-item list-group-item-secondary"><strong>Nome:</strong> {{ categoria.nome }}</p>
+        <p class="list-group-item"><strong>Descrição:</strong> {{ categoria.descricao }}</p>
+    </ul>
+    
+    <a class="btn btn-success" href="{% url 'atualizar_categoria' categoria.pk %}">Editar Categoria</a>
+    <a class="btn btn-danger" href="{% url 'listar_categorias' %}">Voltar</a>
+
+{% endblock %}
